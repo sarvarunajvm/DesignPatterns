@@ -6,6 +6,10 @@ import com.concrete.base.creator.Logistics;
 import com.concrete.other.creator.RoadLogistics;
 import com.concrete.other.creator.SeaLogistics;
 
+/**
+ * DemoFactory class. Everything comes together here.
+ */
+
 public class DemoFactory {
 
 	private static Logistics logistics;
@@ -22,10 +26,10 @@ public class DemoFactory {
 		scanner.close();
 	}
 
-	private static void sendDelivery() {
-		logistics.planDelivery();
-	}
-
+    /**
+     * The concrete factory is usually chosen depending on configuration or
+     * environment options.
+     */
 	private static void getTransport(int option) {
 		if (option == 1) {
 			logistics = new RoadLogistics();
@@ -36,5 +40,13 @@ public class DemoFactory {
 		}
 
 	}
-
+	
+    /**
+     * All of the client code should work with factories and products through
+     * abstract interfaces. This way it does not care which factory it works
+     * with and what kind of transport it returns.
+     */
+	private static void sendDelivery() {
+		logistics.planDelivery();
+	}
 }
